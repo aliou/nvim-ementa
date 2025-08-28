@@ -1,0 +1,136 @@
+*ementa.txt*    nvim-ementa plugin documentation
+
+==============================================================================
+INTRODUCTION					*ementa* *nvim-ementa*
+
+nvim-ementa is a collection of small, opinionated, and useful Lua snippets for Neovim,
+assembled into a unified menu. It provides tools for AMP files, Biome linting, dbt SQL
+filetype detection, and a tmux popup test strategy.
+
+Author: Aliou Diallo <aliou.diallo@gmail.com>
+Repository: https://github.com/aliou/nvim-ementa
+
+==============================================================================
+REQUIREMENTS					*ementa-requirements*
+
+- Neovim >= 0.11.0
+
+==============================================================================
+INSTALLATION					*ementa-install*
+
+Using lazy.nvim:
+>
+    {
+      'aliou/nvim-ementa',
+      config = function()
+        -- Optional configuration
+      end,
+    }
+<
+
+Using mini.deps:
+>
+    local MiniDeps = require('mini.deps')
+    MiniDeps.add({
+      source = 'aliou/nvim-ementa',
+    })
+<
+
+Using Neovim's native package system:
+>
+    git clone https://github.com/aliou/nvim-ementa.git \
+      ~/.local/share/nvim/site/pack/plugins/start/nvim-ementa
+<
+
+==============================================================================
+FEATURES					*ementa-features*
+
+AMP Support:
+- Detects AMP permissions files and AMP message markdown files.
+- Sets filetype to 'amp-permissions' for permissions.txt.
+- Syntax highlighting for AMP permissions.
+
+Biome Integration:
+- Provides `:BiomeLint [path]` command to run Biome linter.
+- Populates quickfix list with linting results.
+- Configurable default path and custom command.
+
+DBT SQL Support:
+- Detects dbt compiled, model, and macro files.
+- Sets filetype for dbt project structure:
+    - dbt-compiled.sql for compiled/run files
+    - dbt-model.sql for model files
+    - dbt-macro.sql for macro files
+- Optionally makes compiled files readonly.
+
+Tmux Popup Test Strategy:
+- Runs tests in a tmux popup window (falls back to basic strategy if not in tmux).
+
+==============================================================================
+USAGE					*ementa-usage*
+
+AMP:
+- Open a permissions.txt or AMP markdown file; filetype and syntax are set automatically.
+
+Biome:
+- Run `:BiomeLint` to lint the current file or configured default.
+- Run `:BiomeLint src/` to lint a specific path.
+- Run `:BiomeLint %` to lint the current file explicitly.
+
+DBT:
+- Open a dbt SQL file in a recognized project structure; filetype is set automatically.
+
+Tmux Popup:
+- Set test strategy in your config:
+>
+    vim.g['test#strategy'] = 'tmux_popup'
+<
+
+==============================================================================
+CONFIGURATION					*ementa-config*
+
+Biome:
+>
+    require('ementa.biome').setup({
+      default_path = nil, -- Path to lint when no argument provided
+      command = nil,      -- Custom command (e.g., {"pnpm", "exec", "biome", "lint"})
+    })
+<
+
+DBT:
+>
+    require('ementa.dbt').setup({
+      readonly_compiled_files = true, -- Make compiled files readonly
+    })
+<
+
+==============================================================================
+COMMANDS					*ementa-commands*
+
+:BiomeLint [path]		Run Biome linter and populate quickfix list
+
+==============================================================================
+MENU INTEGRATION				*ementa-menu*
+
+All snippets are accessible via a unified menu using modern Neovim UI APIs.
+
+==============================================================================
+CONTRIBUTING					*ementa-contributing*
+
+- Write new features/snippets in Lua only
+- Use Neovim 0.11+ APIs
+- Avoid setup/config unless explicitly requested
+- Document any setup/config in README and doc/
+- Integrate snippet into the main menu
+- Test for sensible defaults and usability
+
+==============================================================================
+SEE ALSO					*ementa-see-also*
+
+- https://github.com/aliou/nvim-ementa
+- :help lua
+- :help filetype
+- :help quickfix
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:

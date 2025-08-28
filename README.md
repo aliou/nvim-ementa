@@ -104,6 +104,17 @@ require('ementa.dbt').setup({
 })
 ```
 
+### vim-test tmux popup strategy
+
+Runs tests in a tmux popup window (falls back to basic strategy when not in tmux).
+
+#### Usage
+
+```lua
+-- Set tmux_popup as your test strategy
+vim.g['test#strategy'] = 'tmux_popup'
+```
+
 ## Commands
 
 | Command | Description |
