@@ -34,7 +34,3 @@ This project is a Neovim plugin that assembles small, opinionated, and useful Lu
 - [ ] Document any setup/config in README and doc/
 - [ ] Integrate snippet into the main menu
 - [ ] Test for sensible defaults and usability
-
----
-
-For questions or suggestions, open an issue or pull request. Thank you for contributing to nvim-ementa!

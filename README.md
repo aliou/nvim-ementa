@@ -52,13 +52,6 @@ git clone https://github.com/aliou/nvim-ementa.git \
 
 ## Sub-plugins
 
-### amp
-
-Provides filetype detection and support for AMP-related files:
-- Detects `permissions.txt` files as `amp-permissions` filetype
-- Detects AMP message markdown files in temporary directories
-- Includes syntax highlighting for AMP permissions files
-
 ### biome
 
 Integrates the Biome linter into Neovim:
